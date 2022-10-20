@@ -1,6 +1,9 @@
 package com.example.doctorcenterapp.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,11 +13,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String userId;
+    private String doctorId;
 
     @Column(name = "email")
     private String email;
@@ -38,6 +41,6 @@ public class User {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @Column(name = "is_attached")
-    private Boolean isAttached;
+    @Column(name = "department")
+    private String department;
 }
