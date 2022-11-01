@@ -13,12 +13,11 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class AppointmentService {
 
-    private AppointmentRepository appointmentRepository;
-    private AppointmentMapper appointmentMapper;
+    private final AppointmentRepository appointmentRepository;
 
     public AppointmentDto getAppointmentById(String id) {
         return appointmentRepository.findByAppointmentId(id)
-                .map(appointmentMapper::toDto)
+                .map(AppointmentMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException(String.format("There is no appointment with this appointmentId: %s", id)));
     }
 }

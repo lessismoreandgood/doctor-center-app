@@ -34,12 +34,4 @@ public class Appointment {
 
     @Column(name = "prim")
     private String prim;
-
-    @OneToOne
-    @Column(name = "doctor")
-    private Doctor subscribedDoctor;
-
-    @OneToOne
-    @Column(name = "patient")
-    private User patient;
 }

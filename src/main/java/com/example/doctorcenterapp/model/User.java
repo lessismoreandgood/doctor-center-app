@@ -1,6 +1,7 @@
 package com.example.doctorcenterapp.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -13,7 +14,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String userId;
 
     @Column(name = "email")
@@ -29,14 +30,10 @@ public class User {
     private String middleName;
 
     @Column(name = "password")
-    @Transient
     private String password;
 
     @Column(name = "gender")
     private String gender;
-
-    @Column(name = "is_active")
-    private Boolean isActive;
 
     @Column(name = "is_attached")
     private Boolean isAttached;

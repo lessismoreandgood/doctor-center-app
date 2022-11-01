@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Table(name = "_user")
+@Table(name = "doctor")
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,7 +18,7 @@ import javax.persistence.*;
 public class Doctor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String doctorId;
 
     @Column(name = "email")
@@ -37,10 +39,4 @@ public class Doctor {
 
     @Column(name = "gender")
     private String gender;
-
-    @Column(name = "is_active")
-    private Boolean isActive;
-
-    @Column(name = "department")
-    private String department;
 }

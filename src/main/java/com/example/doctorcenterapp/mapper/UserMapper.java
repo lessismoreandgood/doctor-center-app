@@ -8,11 +8,12 @@ public class UserMapper {
     private UserMapper() {
     }
 
-    public UserDto toDto(User user) {
+    public static UserDto toDto(User user) {
         return UserDto.builder()
                 .userId(user.getUserId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
+                .middleName(user.getMiddleName())
                 .email(user.getEmail())
                 .gender(user.getGender())
                 .build();

@@ -2,6 +2,7 @@ package com.example.doctorcenterapp.model.dto;
 
 import com.example.doctorcenterapp.model.Doctor;
 import com.example.doctorcenterapp.model.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,15 +14,21 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AppointmentDto {
 
+    @JsonProperty("appointment_id")
     private String appointmentId;
 
+    @JsonProperty("email")
     private String email;
 
+    @JsonProperty("date_of_registration")
     private String dateOfRegistration;
 
+    @JsonProperty("time")
     private String time;
 
+    @JsonProperty("user_name")
     private String userName;
 
+    @JsonProperty("doctor_name")
     private String doctorName;
 }

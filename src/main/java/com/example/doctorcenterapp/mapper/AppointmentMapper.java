@@ -10,12 +10,12 @@ public class AppointmentMapper {
     private AppointmentMapper() {
     }
 
-    public AppointmentDto toDto(Appointment appointment) {
+    public static AppointmentDto toDto(Appointment appointment) {
         return AppointmentDto.builder()
                 .appointmentId(appointment.getAppointmentId())
                 .email(appointment.getEmail())
-                .userName(this.getNameOfAUser(appointment.getPatient()))
-                .doctorName(this.getNameOfADoctor(appointment.getSubscribedDoctor()))
+//                .userName(this.getNameOfAUser(appointment.getPatient()))
+//                .doctorName(this.getNameOfADoctor(appointment.getSubscribedDoctor()))
                 .time(appointment.getTime())
                 .dateOfRegistration(appointment.getDateOfRegistration())
                 .build();
