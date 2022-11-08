@@ -1,0 +1,32 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://interfaces.soap.springboot.nnz.com"
+           targetNamespace="http://interfaces.soap.springboot.nnz.com"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="doctorInfo">
+        <xs:sequence>
+            <xs:element name="doctorId" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="middleName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="gender" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getDoctorByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="doctorId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getDoctorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="doctorInfo" type="tns:doctorInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

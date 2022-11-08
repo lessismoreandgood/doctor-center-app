@@ -25,6 +25,12 @@ public class DoctorService {
                 .orElseThrow(() -> new NoSuchElementException(""));
     }
 
+    public DoctorDto getDoctorById(String id) {
+        return doctorRepository.findById(id)
+                .map(DoctorMapper::toDto)
+                .orElseThrow(() -> new NoSuchElementException(""));
+    }
+
 //    public DoctorDto getDoctorByDepartment(Department department) {
 //        return doctorRepository.findDoctorByDepartment(department)
 //                .map(doctorMapper::toDto)
