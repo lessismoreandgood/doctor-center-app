@@ -1,7 +1,5 @@
 package com.example.doctorcenterapp.endpoint;
 
-import com.example.doctorcenterapp.model.dto.DoctorDto;
-
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
