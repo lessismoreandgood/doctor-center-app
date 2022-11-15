@@ -18,7 +18,7 @@
     <xs:element name="getDoctorByIdRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="doctorId" type="xs:long"/>
+                <xs:element name="doctorId" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

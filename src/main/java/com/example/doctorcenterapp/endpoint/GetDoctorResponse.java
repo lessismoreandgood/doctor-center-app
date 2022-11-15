@@ -6,17 +6,17 @@ import javax.xml.bind.annotation.*;
 @XmlType(name = "", propOrder = {
         "doctorInfo"
 })
-@XmlRootElement(name = "getEmployeeResponse")
-public class GetEmployeeResponse {
+@XmlRootElement(name = "getDoctorResponse")
+public class GetDoctorResponse {
 
     @XmlElement(required = true)
     protected DoctorInfo doctorInfo;
 
-    public DoctorInfo getEmployeeInfo() {
+    public DoctorInfo getDoctorInfo() {
         return doctorInfo;
     }
 
-    public void setEmployeeInfo(DoctorInfo value) {
+    public void setDoctorInfo(DoctorInfo value) {
         this.doctorInfo = value;
     }
 

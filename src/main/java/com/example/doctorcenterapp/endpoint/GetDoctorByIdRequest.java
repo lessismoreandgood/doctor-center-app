@@ -7,18 +7,18 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "employeeId"
+    "doctorId"
 })
 @XmlRootElement(name = "getDoctorByIdRequest")
-public class GetEmployeeByIdRequest {
+public class GetDoctorByIdRequest {
 
-    protected String employeeId;
+    protected String doctorId;
 
-    public String getEmployeeId() {
-        return employeeId;
+    public String getDoctorId() {
+        return doctorId;
     }
 
-    public void setEmployeeId(String value) {
-        this.employeeId = value;
+    public void setDoctorId(String value) {
+        this.doctorId = value;
     }
 }

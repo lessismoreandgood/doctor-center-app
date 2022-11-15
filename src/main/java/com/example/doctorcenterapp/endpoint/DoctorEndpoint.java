@@ -17,11 +17,11 @@ public class DoctorEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE, localPart = "getDoctorByIdRequest")
     @ResponsePayload
-    public GetEmployeeResponse getEmployee(@RequestPayload GetEmployeeByIdRequest request) {
-        GetEmployeeResponse response = new GetEmployeeResponse();
+    public GetDoctorResponse getDoctor(@RequestPayload GetDoctorByIdRequest request) {
+        GetDoctorResponse response = new GetDoctorResponse();
         DoctorInfo doctor = new DoctorInfo();
-        BeanUtils.copyProperties(service.getDoctorById(request.getEmployeeId()), doctor);
-        response.setEmployeeInfo(doctor);
+        BeanUtils.copyProperties(service.getDoctorById(request.getDoctorId()), doctor);
+        response.setDoctorInfo(doctor);
         return response;
     }
 
