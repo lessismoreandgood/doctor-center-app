@@ -1,7 +1,5 @@
 package com.example.doctorcenterapp.model.dto;
 
-import com.example.doctorcenterapp.model.Doctor;
-import com.example.doctorcenterapp.model.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +29,10 @@ public class AppointmentDto {
 
     @JsonProperty("doctor_name")
     private String doctorName;
+
+    @JsonProperty("prim")
+    private String prim;
+
+    @JsonProperty("is_confirmed")
+    private boolean isConfirmed;
 }

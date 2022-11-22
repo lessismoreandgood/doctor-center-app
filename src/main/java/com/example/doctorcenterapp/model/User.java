@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "_user")
 @Entity
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Builder
 public class User {
 
-    @Id
+    @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String userId;
 
@@ -37,4 +38,8 @@ public class User {
 
     @Column(name = "is_attached")
     private Boolean isAttached;
+
+    @OneToMany(cascade = CascadeType.ALL, //cascade all operations to children
+            orphanRemoval = true)
+    private List<Appointment> appointmentList;
 }

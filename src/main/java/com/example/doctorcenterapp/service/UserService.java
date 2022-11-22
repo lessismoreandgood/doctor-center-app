@@ -18,8 +18,10 @@ public class UserService {
     private final UserRepository userRepository;
 
     public UserDto saveUser(User user) {
-        user.setUserId(String.valueOf(System.currentTimeMillis()));
-        User savedUser = userRepository.save(user);
+        User savedUser = null;
+        if (Optional.ofNullable(user).isPresent() && this.isEmailValid(user.getEmail())) {
+            savedUser = userRepository.save(user);
+        }
         return Optional.ofNullable(savedUser)
                 .map(UserMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException(""));
@@ -46,5 +48,15 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(UserMapper::toDto)
                 .toList();
+    }
+
+    public boolean isEmailValid(String email) {
+        String user = getAllUsers().stream().map(UserDto::getEmail)
+                .filter(a -> !a.equalsIgnoreCase(email))
+                .filter(a -> a.contains("@"))
+                .findFirst()
+                .orElse("NO SUCH USER");
+
+        return !user.equals("NO SUCH USER");
     }
 }

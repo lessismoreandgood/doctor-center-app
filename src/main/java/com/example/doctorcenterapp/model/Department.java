@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "department")
 @Entity
@@ -15,10 +17,13 @@ import javax.persistence.*;
 @Builder
 public class Department {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String departmentId;
 
     @Column(name = "dep_name")
     private String departmentName;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<User> userList;
 }

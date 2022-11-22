@@ -1,6 +1,7 @@
 package com.example.doctorcenterapp.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -12,26 +13,24 @@ import javax.persistence.*;
 @Builder
 public class Appointment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String appointmentId;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "regtime")
-    @Transient
-    private String dateOfCreation;
-
-    @Column(name = "date")
-    private String dateOfRegistration;
 
     @Column(name = "time")
     private String time;
 
     @Column(name = "prim")
     private String prim;
+
+    @ManyToOne
+    @JoinColumn(name = "user_appointment_id")
+    private User userList;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_appointment_id")
+    private Doctor doctorList;
+
+    @Column(name = "is_confirmed")
+    private boolean confirmed;
 }

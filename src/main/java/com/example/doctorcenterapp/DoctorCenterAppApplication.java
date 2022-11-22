@@ -8,6 +8,8 @@ public class DoctorCenterAppApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DoctorCenterAppApplication.class, args);
+
+//        KafkaRunner.start();
     }
 
 }

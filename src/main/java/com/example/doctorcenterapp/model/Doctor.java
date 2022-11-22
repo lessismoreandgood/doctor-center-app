@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class Doctor {
 
-    @Id
+    @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String doctorId;
 
@@ -39,4 +39,8 @@ public class Doctor {
 
     @Column(name = "gender")
     private String gender;
+
+    @OneToMany(cascade = CascadeType.ALL, //cascade all operations to children
+            orphanRemoval = true)
+    List<Appointment> appointmentList;
 }

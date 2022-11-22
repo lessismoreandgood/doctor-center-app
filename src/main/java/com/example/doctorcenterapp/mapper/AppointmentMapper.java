@@ -13,11 +13,11 @@ public class AppointmentMapper {
     public static AppointmentDto toDto(Appointment appointment) {
         return AppointmentDto.builder()
                 .appointmentId(appointment.getAppointmentId())
-                .email(appointment.getEmail())
 //                .userName(this.getNameOfAUser(appointment.getPatient()))
 //                .doctorName(this.getNameOfADoctor(appointment.getSubscribedDoctor()))
                 .time(appointment.getTime())
-                .dateOfRegistration(appointment.getDateOfRegistration())
+                .prim(appointment.getPrim())
+                .isConfirmed(appointment.isConfirmed())
                 .build();
     }
 

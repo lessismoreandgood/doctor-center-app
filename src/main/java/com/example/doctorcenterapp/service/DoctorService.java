@@ -16,10 +16,13 @@ import java.util.Optional;
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
+    private final UserService userService;
 
     public DoctorDto saveDoctor(Doctor doctor) {
-        doctor.setDoctorId(String.valueOf(System.currentTimeMillis()));
-        Doctor savedDoctor = doctorRepository.save(doctor);
+        Doctor savedDoctor = null;
+        if (Optional.ofNullable(doctor).isPresent() && userService.isEmailValid(doctor.getEmail())) {
+            savedDoctor = doctorRepository.save(doctor);
+        }
         return Optional.ofNullable(savedDoctor)
                 .map(DoctorMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException(""));
