@@ -1,13 +1,16 @@
 package com.example.doctorcenterapp.service;
 
 import com.example.doctorcenterapp.mapper.DoctorMapper;
+import com.example.doctorcenterapp.mapper.UserMapper;
 import com.example.doctorcenterapp.model.Department;
 import com.example.doctorcenterapp.model.Doctor;
 import com.example.doctorcenterapp.model.dto.DoctorDto;
+import com.example.doctorcenterapp.model.dto.UserDto;
 import com.example.doctorcenterapp.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -30,6 +33,13 @@ public class DoctorService {
                 .map(DoctorMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException(""));
     }
+
+    public List<DoctorDto> getAllDoctors() {
+        return doctorRepository.findAll().stream()
+                .map(DoctorMapper::toDto)
+                .toList();
+    }
+
 
 //    public DoctorDto getDoctorByDepartment(Department department) {
 //        return doctorRepository.findDoctorByDepartment(department)
