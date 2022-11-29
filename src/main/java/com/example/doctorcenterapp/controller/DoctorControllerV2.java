@@ -30,7 +30,7 @@ public class DoctorControllerV2 {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public DoctorDto getDoctorByIdV2(Doctor doctor) {
+    public DoctorDto saveDoctorV2(Doctor doctor) {
         return doctorService.saveDoctor(doctor);
     }
 }
