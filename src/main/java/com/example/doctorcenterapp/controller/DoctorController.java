@@ -7,9 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/doctor")
@@ -21,5 +20,15 @@ public class DoctorController {
     @PostMapping("/")
     public ResponseEntity<DoctorDto> createUser(@RequestBody Doctor doctor) {
         return new ResponseEntity<>(doctorService.saveDoctor(doctor), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/")
+    public String getDoctorByIdV2(@RequestParam(value = "id") String id,
+                                  Model model) {
+        DoctorDto doctorById = doctorService.getDoctorById(id);
+        model.addAttribute("doctorById", doctorById);
+
+        return "doctor";
     }
 }

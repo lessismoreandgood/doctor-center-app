@@ -8,8 +8,10 @@ import com.example.doctorcenterapp.model.dto.DoctorDto;
 import com.example.doctorcenterapp.model.dto.UserDto;
 import com.example.doctorcenterapp.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -35,9 +37,29 @@ public class DoctorService {
     }
 
     public List<DoctorDto> getAllDoctors() {
-        return doctorRepository.findAll().stream()
+        List<DoctorDto> doctorDtos = doctorRepository.findAll().stream()
                 .map(DoctorMapper::toDto)
                 .toList();
+
+        List<Doctor> all = doctorRepository.findAll();
+        List<DoctorDto> allDto = new ArrayList<>();
+        for (int i = 0; i < all.size(); i++) {
+            allDto.add(DoctorMapper.toDto(all.get(i)));
+        }
+
+        return allDto;
+    }
+
+    public DoctorDto updateDoctor(Doctor doctor) {
+        if(doctorRepository.findById(doctor.getDoctorId()).isPresent()) {
+            Doctor savedDoctor = doctorRepository.save(doctor);
+
+            return Optional.ofNullable(savedDoctor)
+                    .map(DoctorMapper::toDto)
+                    .orElseThrow(() -> new NoSuchElementException(""));
+        } else {
+            return null;
+        }
     }
 
 

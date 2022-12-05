@@ -12,12 +12,19 @@ import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-
 @Component
 @Path("/doctors")
 @RequiredArgsConstructor
 public class DoctorControllerV2 {
     private final DoctorService doctorService;
+
+    @Path("/")
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public DoctorDto saveDoctorV2(Doctor doctor) {
+        return doctorService.saveDoctor(doctor);
+    }
 
     @Path("/all")
     @GET
@@ -26,11 +33,18 @@ public class DoctorControllerV2 {
         return doctorService.getAllDoctors();
     }
 
-    @Path("/")
+    @Path("/byId")
+    @GET
+    @Produces(APPLICATION_JSON)
+    public DoctorDto saveDoctorV2(@QueryParam(value = "id") String id) {
+        return doctorService.getDoctorById(id);
+    }
+
+    @Path("/update")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public DoctorDto saveDoctorV2(Doctor doctor) {
-        return doctorService.saveDoctor(doctor);
+    public DoctorDto updateDoctorV2(Doctor doctor) {
+        return doctorService.updateDoctor(doctor);
     }
 }

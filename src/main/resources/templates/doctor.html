@@ -1,0 +1,69 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div>
+    <div class="row mt-5">
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0" th:text="${doctorById}"></h3>
+            <div class="mb-1 text-muted" th:text="${doctorById.postDate}"></div>
+            <p class="card-text mb-auto" th:text="${doctorById.content}">This is a wider card with supporting text below as a
+                natural lead-in to additional content.</p>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" src="https://i1.sndcdn.com/artworks-okKt1tIv85hoR3kr-j2YYew-t500x500.jpg"
+                 width="250" height="250" alt="">
+        </div>
+    </div>
+</div>
+<script>
+    function comment() {
+        var content = document.getElementById("content").value
+        var postId = document.getElementById("post_id").value
+        $.ajax({
+            url: "/comment",
+            data: {
+                "post_id": postId,
+                content
+            },
+            type: "POST",
+            success: function (response) {
+                console.log(response);
+                document.getElementById("comments").innerHTML +=
+                    "<div class=\"card\" style=\"width: 27rem;\">\n" +
+                    "         <div class=\"card-header\">\n" +
+                    response.author +
+                    "         </div>\n" +
+                    "         <ul> class=\"list-group list-group-flush\">\n" +
+                    "           <li class=\"list-group-item\">" + content + "</li>\n" +
+                    "           <li class=\"list-group-item\">" + response.time + "</li>\n" +
+                    "     </ul>\n" +
+                    "     </div>"
+            },
+            error: function (xhr, status, error) {
+                alert("ERROR")
+            }
+        });
+    }
+
+    function deleteComment(id) {
+        $.ajax({
+            url: "/comment/" + id,
+            type: "DELETE",
+            success: function (response) {
+            },
+            error: function (xhr, status, error) {
+            }
+        });
+    }
+
+    function deletePost(id) {
+        $.ajax({
+            url: "/posts/" + id,
+            type: "DELETE",
+            success: function (response) {
+                window.open("/posts")
+            },
+            error: function (xhr, status, error) {
+            }
+        });
+    }
+</script>
+</html>
